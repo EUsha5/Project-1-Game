@@ -1,0 +1,37 @@
+body {
+    background-color: #87d7be;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .game-logo {
+    text-align: center;
+    background-color: white;
+    border-radius:25px;
+    border-color: none;
+    width: 350px;
+  }
+  
+  #canvas {
+    background-image: url('../images/canvas-bg.png');
+    border: 2px solid #2d1700;
+    /* height: 800;
+    width: 1200; */
+}
+  
+  /* body button {
+    font-size: 30px;
+    background-color: #870007;
+    color: #fff;
+    padding: 20px 40px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  } */
+  
+  #game-board {
+      text-align: center;
+      margin: 50px;
+  }
+  
