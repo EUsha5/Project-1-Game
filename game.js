@@ -73,20 +73,52 @@ var theInt;
 
  class Obstacles {
      constructor() {
-        this.x = 
-        this.y = 
-        this.width = 
-        this.height =
-        this.img = [0, 1];
-        this.type = [0, 1];
-
+        // this.width = 50;
+        // this.height = 45;
+        this.img1 = 'images/mushroom-obstacle.png';
+        this.img2 = 'images/sapling-obstacle.png';
+        // this.type1 = 
+        // this.type2 = 
      }
+ 
+        drawMushroomObstacle() {
+            var img1 = new Image();
+            img1.src = this.img1;
+            img1.onload= (() => {
+                ctx.drawImage(img1, 500, 262, 35, 30);
+            })
+        }
+
+        drawSaplingObstacle() {
+            var img2 = new Image();
+            img2.src = this.img2;
+            img2.onload= (() => {
+                ctx.drawImage(img2, 600, 250, 50, 45);
+            })
+        }
+
+//      moveObstacles() {
+//         ctx.clearRect(this.x, this.y, this.width, this.height );
+        
+//         if (game is active - start button clicked) {
+//             drawMushroomObstacle && drawSaplingObstacle 
+//             move both obstacles along x axis from max-x to min-x on an infinite loop, at randomly selected y-axis points
+
+//         }
+
+//         this.drawMushroomObstacle();
+//         this.drawSaplingObstacle();
+//     }
+// }
+ 
  }
 
 window.onload = function() {
     player = new Player();
     player.drawPlayer();
-
+    obstacles = new Obstacles();
+    obstacles.drawMushroomObstacle();
+    obstacles.drawSaplingObstacle();
 }
 
 document.onkeydown = function(e) {
