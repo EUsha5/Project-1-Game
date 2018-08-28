@@ -18,20 +18,63 @@ body {
     /* height: 800;
     width: 1200; */
 }
-  
-  /* body button {
-    font-size: 30px;
-    background-color: #870007;
-    color: #fff;
-    padding: 20px 40px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 5px;
-    margin-bottom: 20px;
-  } */
-  
-  #game-board {
-      text-align: center;
-      margin: 50px;
-  }
+
+.left-div {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  bottom: 15vw;
+  left: 7.5vw;
+}
+
+.health-bar {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 200px;
+  height: 20px;
+  padding: 5px;
+  background: #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  position: relative;
+  bottom: 12vw;
+  right: 15.5vw;
+}
+.bar {
+  background: #c54;
+  width: 100%;
+  height: 10px;
+  position: relative; 
+  transition: width .5s linear;
+}
+
+.btn-start {
+  background-image: linear-gradient(to bottom right, #d7ff62, #d77bc3);
+  box-shadow: 0 6px rgba(0, 0, 0, 0.2);
+  padding: 1vw;
+  border-radius: 12px;
+}
+
+button + span {
+  position: relative;
+    bottom: 14vw;
+    right: 8vw;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.score {
+  font-size: 20px;
+  font-weight: 900;
+  position: relative;
+  right: 29vw;
+  bottom: 8vw;
+}
+ 
+#game-board {
+  text-align: center;
+  margin: 50px;
+}
   

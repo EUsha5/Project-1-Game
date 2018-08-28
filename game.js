@@ -97,7 +97,7 @@ var theInt;
             })
         }
 
-//      moveObstacles() {
+//      drawObstacles() {
 //         ctx.clearRect(this.x, this.y, this.width, this.height );
         
 //         if (game is active - start button clicked) {
