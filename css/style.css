@@ -15,16 +15,26 @@ body {
   #canvas {
     background-image: url('../images/canvas-bg.png');
     border: 2px solid #2d1700;
+    height: 28vw;
+    background-repeat: no-repeat;
     /* height: 800;
     width: 1200; */
 }
 
+.main-div {
+  display: flex;
+    justify-content: space-between;
+    width: 99vw;
+    margin: 0;
+
+}
+
 .left-div {
   display: flex;
-  justify-content: flex-start;
-  position: relative;
-  bottom: 15vw;
-  left: 7.5vw;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20vw;
 }
 
 .health-bar {
@@ -38,9 +48,7 @@ body {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  position: relative;
-  bottom: 12vw;
-  right: 15.5vw;
+  margin-top: 5vh;
 }
 .bar {
   background: #c54;
@@ -50,17 +58,17 @@ body {
   transition: width .5s linear;
 }
 
-.btn-start {
+#btn-start {
   background-image: linear-gradient(to bottom right, #d7ff62, #d77bc3);
   box-shadow: 0 6px rgba(0, 0, 0, 0.2);
-  padding: 1vw;
   border-radius: 12px;
+  outline: none;
+  margin-bottom: 16vh;
+  width: 8vw;
+  height: 3vw;
 }
 
-button + span {
-  position: relative;
-    bottom: 14vw;
-    right: 8vw;
+div + span {
     font-size: 20px;
     font-weight: 900;
 }
@@ -68,13 +76,29 @@ button + span {
 .score {
   font-size: 20px;
   font-weight: 900;
-  position: relative;
-  right: 29vw;
-  bottom: 8vw;
 }
  
 #game-board {
   text-align: center;
   margin: 50px;
+}
+
+.div-right {
+  display: flex;
+  justify-content: center;
+  width: 23vw;
+  flex-direction: column;
+  align-items: center;
+}
+
+h4 {
+  font-size: 25px;
+  margin: 0;
+}
+
+ol {
+  list-style-type: none;
+  line-height: 3vw;
+  padding: 0;
 }
   
