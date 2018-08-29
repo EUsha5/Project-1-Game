@@ -37,8 +37,8 @@ class Game{
                     var healthDiv = document.getElementsByClassName("total-health")[0]
                     var totalHealth = Number(healthDiv.innerHTML);
                     healthDiv.innerHTML = (totalHealth - 5);
-                    let barWidth = document.getElementsByClassName('bar').style.width.slice(0,-1)
-                    document.getElementsByClassName('bar').style.width = `${barWidth - 5}%`
+                    // document.getElementsByClassName('bar').css("width", "-=5%");
+                    document.getElementsByClassName('bar').style.width = "5%";
 
                     
                     console.log("I just touched a sapling and lost 5 points in health")
@@ -181,7 +181,7 @@ function bgScroll() {
     // console.log(dt)
     //need to slice '%' when less than 3 integers
         let bgPos = canvas.style.backgroundPositionX.slice(0, -1);
-        canvas.style.backgroundPositionX = `${bgPos-1}%`;
+        canvas.style.backgroundPositionX = `${bgPos- -1}%`;
     window.requestAnimationFrame(bgScroll);
 }
 
