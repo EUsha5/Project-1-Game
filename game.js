@@ -20,13 +20,29 @@ class Game{
                 (this.player.y + this.player.height >= eachObstacle.y && this.player.y <= eachObstacle.y + eachObstacle.height)){
                 if(eachObstacle.imgsrc === 'images/mushroom-obstacle.png'){
                     this.obstacles.splice(i , 1);
-                    this.player.health += 5;
+
                     this.player.score += 5;
-                    console.log("I just ate a mushroom and gained 5 points in health & score!")
+                    var scoreDiv = document.getElementsByClassName("total-score")[0]
+                    var totalScore = Number(scoreDiv.innerHTML);
+                    scoreDiv.innerHTML = (totalScore + 5);
+
+                    // totalScore.innerHTML = parseInt(totalScore.innerHTML, 0) + 5;
+                    
+                    console.log("I just ate a mushroom and gained 5 points in score")
+               
                 } else if (eachObstacle.imgsrc === 'images/sapling-obstacle.png') {
                     this.obstacles.splice(i , 1);
-                    this.player.health -= 5; 
+                    
+                    this.player.health -= 5;
+                    var healthDiv = document.getElementsByClassName("total-health")[0]
+                    var totalHealth = Number(healthDiv.innerHTML);
+                    healthDiv.innerHTML = (totalHealth - 5);
+                    let barWidth = document.getElementsByClassName('bar').style.width.slice(0,-1)
+                    document.getElementsByClassName('bar').style.width = `${barWidth - 5}%`
+
+                    
                     console.log("I just touched a sapling and lost 5 points in health")
+                
                 } 
             }
 
