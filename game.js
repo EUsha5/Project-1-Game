@@ -15,43 +15,37 @@ class Game{
 
     obstacleCollisionCheck() {
         this.obstacles.forEach((eachObstacle, i) => {
+            var scoreDiv = document.getElementsByClassName("total-score")[0]
+            var totalScore = Number(scoreDiv.innerHTML);
+            var healthDiv = document.getElementsByClassName("total-health")[0]
+            var totalHealth = Number(healthDiv.innerHTML);
            
             if ((this.player.x + this.player.width >= eachObstacle.x && this.player.x <= eachObstacle.x + eachObstacle.width) &&
                 (this.player.y + this.player.height >= eachObstacle.y && this.player.y <= eachObstacle.y + eachObstacle.height)){
                 if(eachObstacle.imgsrc === 'images/mushroom-obstacle.png'){
                     this.obstacles.splice(i , 1);
-
                     this.player.score += 5;
-                    var scoreDiv = document.getElementsByClassName("total-score")[0]
-                    var totalScore = Number(scoreDiv.innerHTML);
                     scoreDiv.innerHTML = (totalScore + 5);
-
-                    // totalScore.innerHTML = parseInt(totalScore.innerHTML, 0) + 5;
-                    
-                    console.log("I just ate a mushroom and gained 5 points in score")
-               
                 } else if (eachObstacle.imgsrc === 'images/sapling-obstacle.png') {
                     this.obstacles.splice(i , 1);
-                    
-                    this.player.health -= 5;
-                    var healthDiv = document.getElementsByClassName("total-health")[0]
-                    var totalHealth = Number(healthDiv.innerHTML);
-                    healthDiv.innerHTML = (totalHealth - 5);
-                    // document.getElementsByClassName('bar').css("width", "-=5%");
-                    document.getElementsByClassName('bar').style.width = "5%";
-
-                    
-                    console.log("I just touched a sapling and lost 5 points in health")
-                
-                } 
+                    this.player.health -= 10;
+                    healthDiv.innerHTML = (totalHealth - 10);
+                        if (totalHealth === 10) {
+                            healthDiv.innerHTML = (totalHealth - 10);
+                            setTimeout(() => {
+                                alert("Game Over! Your final score is " + `${totalScore}` + "." + " Click OK to play again.");
+                                window.location.reload();
+                            }, 50)
+                        }
+                }      
             }
-
             if(eachObstacle.x === -75) {
                 this.obstacles.pop(eachObstacle);
-        }     
+            } 
+            
         })
     }
-    
+        
     drawEverything() {
         this.player.drawPlayer();
         this.obstacles.forEach((oneObsticle) => {
@@ -68,6 +62,8 @@ class Game{
     }
 }
 
+
+
 class Player {
     constructor(){
         this.x = 40;
@@ -82,13 +78,10 @@ class Player {
     drawPlayer() {
         var img = new Image();
         img.src = this.img;
-        // img.onload = (() => {
         ctx.drawImage(img, this.x, this.y,this.width, this.height);
-        // })
     }
         
         movePlayer(number) {
-            // ctx.clearRect(this.x, this.y, this.width, this.height );
             switch(number){
                 case 37:
                 if (this.x > 0) {
@@ -101,31 +94,23 @@ class Player {
                     this.x += 0;
                 }
             }
-            // this.drawPlayer();
         }
         
         jumpPlayer(keyCode) {
             clearInterval(theInt);
-            // ctx.clearRect(this.x, this.y, this.width, this.height );
             if (keyCode === 32) {
                 if (this.y > 50){
-                    this.y -= 50;
-                    // this.drawPlayer();                
+                    this.y -= 50;            
                     theInt = setInterval(() => {
                         if(this.y < 250){
-                            // ctx.clearRect(this.x, this.y, this.width, this.height);
                             this.y += 5    
-                            // this.drawPlayer(); 
                         }
                     }, 50);
                 }else{
-                    this.y=50;
-                        // this.drawPlayer();   
+                    this.y=50;  
                     theInt = setInterval(() => {
                         if(this.y < 250){
-                            // ctx.clearRect(this.x, this.y, this.width, this.height);
                             this.y += 5    
-                            // this.drawPlayer(); 
                         }
                     }, 50);             
                 }
@@ -145,9 +130,7 @@ class Obstacle {
     
     drawObstacle() {
         var theImage = new Image();
-
         theImage.src = this.imgsrc;
-
         theImage.onload= (() => {
                 ctx.drawImage(theImage, this.x, this.y, 45, 40);
             })
@@ -155,39 +138,37 @@ class Obstacle {
         
     moveObstacle() {
         setInterval(() => {
-            this.x-=5;
-        }, 50);
+            this.x-=1;
+        }, 15);
     }
 }
     
 let frames = 0;
-let lastTime;
     
 function animate() {
     setInterval(() => {
         ctx.clearRect(0,0,800,400);
         theGame.drawEverything();
-        if(frames % 20 === 0) theGame.generateNewObstacle();
+        if(frames % 75 === 0) theGame.generateNewObstacle();
         theGame.obstacleCollisionCheck();
         frames++;
-}, 100)
+    }, 50)
+    // window.requestAnimationFrame(animate);
 }
 
 //once this is working, use requestanimationframe instead of setinterval to stop the flickering
-function bgScroll() {
-    var now = Date.now(),
-        dt = (now - lastTime) / 1000.0;
-    lastTime = now;
-    // console.log(dt)
-    //need to slice '%' when less than 3 integers
-        let bgPos = canvas.style.backgroundPositionX.slice(0, -1);
-        canvas.style.backgroundPositionX = `${bgPos- -1}%`;
-    window.requestAnimationFrame(bgScroll);
-}
 
+function bgScroll() {
+        let bgPos = canvas.style.backgroundPositionX.slice(0, -1);
+        canvas.style.backgroundPositionX = `${bgPos - -1}%`;
+        window.requestAnimationFrame(bgScroll);
+    }
+    
+    
 function startGame() {
     theGame = new Game();
 }
+
 
 document.getElementById("btn-start").onclick = function() {
     startGame();
