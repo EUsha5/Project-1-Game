@@ -19,6 +19,8 @@ class Game{
             var totalScore = Number(scoreDiv.innerHTML);
             var healthDiv = document.getElementsByClassName("total-health")[0]
             var totalHealth = Number(healthDiv.innerHTML);
+            var healthBar = document.getElementsByClassName("bar")[0]
+            var healthWidth = healthBar.style.width.slice(0, -1);
            
             if ((this.player.x + this.player.width >= eachObstacle.x && this.player.x <= eachObstacle.x + eachObstacle.width) &&
                 (this.player.y + this.player.height >= eachObstacle.y && this.player.y <= eachObstacle.y + eachObstacle.height)){
@@ -30,12 +32,13 @@ class Game{
                     this.obstacles.splice(i , 1);
                     this.player.health -= 10;
                     healthDiv.innerHTML = (totalHealth - 10);
+                    healthBar.style.width = `${Number(healthWidth) - 10}%`
                         if (totalHealth === 10) {
                             healthDiv.innerHTML = (totalHealth - 10);
                             setTimeout(() => {
                                 alert("Game Over! Your final score is " + `${totalScore}` + "." + " Click OK to play again.");
                                 window.location.reload();
-                            }, 50)
+                            }, 1000)
                         }
                 }      
             }
@@ -131,9 +134,9 @@ class Obstacle {
     drawObstacle() {
         var theImage = new Image();
         theImage.src = this.imgsrc;
-        theImage.onload= (() => {
+        // theImage.onload= (() => {
                 ctx.drawImage(theImage, this.x, this.y, 45, 40);
-            })
+            // })
     }
         
     moveObstacle() {
@@ -146,21 +149,21 @@ class Obstacle {
 let frames = 0;
     
 function animate() {
-    setInterval(() => {
+    // setInterval(() => {
         ctx.clearRect(0,0,800,400);
         theGame.drawEverything();
         if(frames % 75 === 0) theGame.generateNewObstacle();
         theGame.obstacleCollisionCheck();
         frames++;
-    }, 50)
-    // window.requestAnimationFrame(animate);
+    // }, 50)
+    window.requestAnimationFrame(animate);
 }
 
 //once this is working, use requestanimationframe instead of setinterval to stop the flickering
 
 function bgScroll() {
         let bgPos = canvas.style.backgroundPositionX.slice(0, -1);
-        canvas.style.backgroundPositionX = `${bgPos - -1}%`;
+        canvas.style.backgroundPositionX = `${Number(bgPos) + 1}%`;
         window.requestAnimationFrame(bgScroll);
     }
     
