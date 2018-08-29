@@ -14,14 +14,26 @@ class Game{
     }
 
     obstacleCollisionCheck() {
-        this.obstacles.forEach((eachObstacle) => {
+        this.obstacles.forEach((eachObstacle, i) => {
+           
             if ((this.player.x + this.player.width >= eachObstacle.x && this.player.x <= eachObstacle.x + eachObstacle.width) &&
                 (this.player.y + this.player.height >= eachObstacle.y && this.player.y <= eachObstacle.y + eachObstacle.height)){
+                if(eachObstacle.imgsrc === 'images/mushroom-obstacle.png'){
+                    this.obstacles.splice(i , 1);
+                    this.player.health += 5;
+                    this.player.score += 5;
+                    console.log("I just ate a mushroom and gained 5 points in health & score!")
+                } else if (eachObstacle.imgsrc === 'images/sapling-obstacle.png') {
+                    this.obstacles.splice(i , 1);
+                    this.player.health -= 5; 
+                    console.log("I just touched a sapling and lost 5 points in health")
+                } 
             }
+
             if(eachObstacle.x === -75) {
                 this.obstacles.pop(eachObstacle);
-            }
-        }) 
+        }     
+        })
     }
     
     drawEverything() {
@@ -43,9 +55,9 @@ class Game{
 class Player {
     constructor(){
         this.x = 40;
-        this.y = 200;
-        this.width = 80;
-        this.height = 95;
+        this.y = 250;
+        this.width = 75;
+        this.height = 90;
         this.img = 'images/teemo-player.png';
         this.score = 0;
         this.health = 100;
@@ -84,7 +96,7 @@ class Player {
                     this.y -= 50;
                     // this.drawPlayer();                
                     theInt = setInterval(() => {
-                        if(this.y < 200){
+                        if(this.y < 250){
                             // ctx.clearRect(this.x, this.y, this.width, this.height);
                             this.y += 5    
                             // this.drawPlayer(); 
@@ -94,7 +106,7 @@ class Player {
                     this.y=50;
                         // this.drawPlayer();   
                     theInt = setInterval(() => {
-                        if(this.y < 200){
+                        if(this.y < 250){
                             // ctx.clearRect(this.x, this.y, this.width, this.height);
                             this.y += 5    
                             // this.drawPlayer(); 
@@ -134,31 +146,28 @@ class Obstacle {
     
 let frames = 0;
 let lastTime;
-   
+    
 function animate() {
     setInterval(() => {
         ctx.clearRect(0,0,800,400);
         theGame.drawEverything();
-        if(frames % 10 === 0) theGame.generateNewObstacle();
+        if(frames % 20 === 0) theGame.generateNewObstacle();
         theGame.obstacleCollisionCheck();
         frames++;
 }, 100)
 }
 
-function main() {
+//once this is working, use requestanimationframe instead of setinterval to stop the flickering
+function bgScroll() {
     var now = Date.now(),
         dt = (now - lastTime) / 1000.0;
-
     lastTime = now;
-
     // console.log(dt)
     //need to slice '%' when less than 3 integers
-        let bgPos = canvas.style.backgroundPositionX.slice(0,-1);
+        let bgPos = canvas.style.backgroundPositionX.slice(0, -1);
         canvas.style.backgroundPositionX = `${bgPos-1}%`;
-    window.requestAnimationFrame(main);
+    window.requestAnimationFrame(bgScroll);
 }
-
-    //once this is working, use requestanimationframe instead of setinterval to stop the flickering
 
 function startGame() {
     theGame = new Game();
@@ -167,7 +176,7 @@ function startGame() {
 document.getElementById("btn-start").onclick = function() {
     startGame();
     animate();
-    main();
+    bgScroll();
 }
 
 document.onkeydown = function(e) {

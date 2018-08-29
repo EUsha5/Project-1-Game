@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="Css/style.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>Teemo Jump</title>
 </head>
 <body>
@@ -20,27 +20,25 @@
           </div>
         </div>
         <div>
-          <h4>Badger Life</h4>
-          <h5 class="score">Score:0</h5>
+          <h5 class = "health">Health: <div class="total-health">100</div></h5>
+          <h5 class = "score">Score: <div class="total-score">0</div></h5>
         </div>
       </div>
-
       <button id="btn-start">Start Game</button>
     </div>
-    <canvas style="background-position-x: 100%" id="canvas" width="800" height="400"></canvas>
+    <canvas id="canvas" style = "background-position-x: 100%;animation-direction: reverse;" width="800" height="400"></canvas>
     <div class="div-right">
-      <h4>Instructions</h4>
+      <h4>Scouts Code</h4>
       <ol>
-        <li>Move using Left/Right arrow keys</li>
-        <li>Jump using the Spacebar</li>
-        <li>Collect the Mushrooms</li>
-        <li>Avoid the Saplings</li>
-        <li>Play until health reaches 0</li>
-        <li>SCORE HIGH, DON'T DIE!</li>
+        <li><img src="./images/mushroom-obstacle.png" class="mush-icon">Move with left + right arrow keys</li>
+        <li><img src="./images/mushroom-obstacle.png" class="mush-icon">Jump with spacebar</li>
+        <li><img src="./images/mushroom-obstacle.png" class="mush-icon">Collect the mushrooms</li>
+        <li><img src="./images/mushroom-obstacle.png" class="mush-icon">Avoid the saplings</li>
+        <li><img src="./images/mushroom-obstacle.png" class="mush-icon">Play until health reaches 0</li>
+        <li><img src="./images/mushroom-obstacle.png" class="mush-icon">SCORE HIGH, DON'T DIE!</li>
       </ol>
     </div>
   </div>
 </body>
-<script type="text/javascript" src="canvas.js"></script>
 <script type="text/javascript" src="game.js"></script>
 </html>
