@@ -133,7 +133,8 @@ class Obstacle {
 }
     
 let frames = 0;
-    
+let lastTime;
+   
 function animate() {
     setInterval(() => {
         ctx.clearRect(0,0,800,400);
@@ -143,8 +144,21 @@ function animate() {
         frames++;
 }, 100)
 }
-//once this is working, use requestanimationframe instead of setinterval to stop the flickering
 
+function main() {
+    var now = Date.now(),
+        dt = (now - lastTime) / 1000.0;
+
+    lastTime = now;
+
+    // console.log(dt)
+    //need to slice '%' when less than 3 integers
+        let bgPos = canvas.style.backgroundPositionX.slice(0,-1);
+        canvas.style.backgroundPositionX = `${bgPos-1}%`;
+    window.requestAnimationFrame(main);
+}
+
+    //once this is working, use requestanimationframe instead of setinterval to stop the flickering
 
 function startGame() {
     theGame = new Game();
@@ -153,6 +167,7 @@ function startGame() {
 document.getElementById("btn-start").onclick = function() {
     startGame();
     animate();
+    main();
 }
 
 document.onkeydown = function(e) {
