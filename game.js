@@ -66,14 +66,12 @@ class Game{
     }
 }
 
-
-
 class Player {
     constructor(){
         this.x = 40;
         this.y = 250;
-        this.width = 75;
-        this.height = 90;
+        this.width = 65;
+        this.height = 80;
         this.img = 'images/teemo-player.png';
         this.score = 0;
         this.health = 100;
@@ -135,9 +133,7 @@ class Obstacle {
     drawObstacle() {
         var theImage = new Image();
         theImage.src = this.imgsrc;
-        // theImage.onload= (() => {
                 ctx.drawImage(theImage, this.x, this.y, 45, 40);
-            // })
     }
         
     moveObstacle() {
@@ -150,22 +146,21 @@ class Obstacle {
 let frames = 0;
     
 function animate() {
-    // setInterval(() => {
         ctx.clearRect(0,0,800,400);
         theGame.drawEverything();
         if(frames % 75 === 0) theGame.generateNewObstacle();
         theGame.obstacleCollisionCheck();
         frames++;
-    // }, 50)
     window.requestAnimationFrame(animate);
 }
 
 function bgScroll() {
     let bgPos = canvas.style.backgroundPositionX.slice(0, -1);
-    canvas.style.backgroundPositionX = `${Number(bgPos) + 1}%`;
+    canvas.style.backgroundPositionX = `${Number(bgPos) + .65}%`;
     window.requestAnimationFrame(bgScroll);
 }
 
+//Timer functions
 let timer = document.getElementById('timer');
 let seconds = 0;
 let minutes = 0;
@@ -183,6 +178,13 @@ function addTime() {
 function theTimer() {
     t = this.setTimeout(addTime, 1000);
 }
+
+//Audio play on start
+function play(){
+    let audio = document.getElementById('audio');
+    audio.play();
+
+}
     
 function startGame() {
     theGame = new Game();
@@ -194,6 +196,7 @@ document.getElementById("btn-start").onclick = function() {
     animate();
     bgScroll();
     theTimer();
+    play();
 }
 
 document.onkeydown = function(e) {

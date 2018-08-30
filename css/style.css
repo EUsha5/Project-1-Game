@@ -4,6 +4,21 @@ body {
   text-align: center;
 }
 
+.game-intro {
+  display: flex;
+  flex-direction: row;
+  height: 15vw;
+  justify-content: center;
+}
+
+#audio {
+  align-self: center;
+  position: absolute;
+  left: 1vw;
+}
+
+
+
 .game-logo {
   text-align: center;
   background-color: #b4fde6;
@@ -18,8 +33,7 @@ body {
   border: 2px solid #2d1700;
   height: 28vw;
   background-repeat: repeat;
-  background-attachment: fixed;
-  background-position-y: 63.5%;
+  background-attachment: static;
 }
 
 .main-div {
@@ -54,7 +68,7 @@ background: #d7ff62;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;
-margin-top: 8vh;
+margin-top: 4vh;
 }
 
 .bar {
