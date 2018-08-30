@@ -159,14 +159,29 @@ function animate() {
     window.requestAnimationFrame(animate);
 }
 
-//once this is working, use requestanimationframe instead of setinterval to stop the flickering
-
 function bgScroll() {
-        let bgPos = canvas.style.backgroundPositionX.slice(0, -1);
-        canvas.style.backgroundPositionX = `${Number(bgPos) + 1}%`;
-        window.requestAnimationFrame(bgScroll);
+    let bgPos = canvas.style.backgroundPositionX.slice(0, -1);
+    canvas.style.backgroundPositionX = `${Number(bgPos) + 1}%`;
+    window.requestAnimationFrame(bgScroll);
+}
+
+let timer = document.getElementById('timer');
+let seconds = 0;
+let minutes = 0;
+let t;
+function addTime() {
+    seconds++;
+    if(seconds >= 60){
+        seconds =  0;
+        minutes++;
     }
-    
+    timer.innerHTML = (minutes? (minutes > 9? minutes : "0" + minutes) : "00") +":"+ (seconds? (seconds > 9? seconds : "0" + seconds) : "00")
+    theTimer();
+}
+
+function theTimer() {
+    t = this.setTimeout(addTime, 1000);
+}
     
 function startGame() {
     theGame = new Game();
@@ -177,6 +192,7 @@ document.getElementById("btn-start").onclick = function() {
     startGame();
     animate();
     bgScroll();
+    theTimer();
 }
 
 document.onkeydown = function(e) {
