@@ -17,6 +17,7 @@ class Game{
         this.obstacles.forEach((eachObstacle, i) => {
             var scoreDiv = document.getElementsByClassName("total-score")[0]
             var totalScore = Number(scoreDiv.innerHTML);
+            var theTimer = timer.innerHTML;
             var healthDiv = document.getElementsByClassName("total-health")[0]
             var totalHealth = Number(healthDiv.innerHTML);
             var healthBar = document.getElementsByClassName("bar")[0]
@@ -36,7 +37,7 @@ class Game{
                         if (totalHealth === 10) {
                             healthDiv.innerHTML = (totalHealth - 10);
                             setTimeout(() => {
-                                alert("Game Over! Your final score is " + `${totalScore}` + "." + " Click OK to play again.");
+                                alert("Game Over! You played for " + `${theTimer}` + " and Your final score is " + `${totalScore}` + "." + " Click OK to play again.");
                                 window.location.reload();
                             }, 1000)
                         }
