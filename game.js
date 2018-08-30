@@ -182,6 +182,7 @@ function theTimer() {
 //Audio 
 //play on start
 function play(){
+    console.log('heyyyyy')
     let audio = document.getElementById('audio');
         audio.play();
 }
@@ -191,10 +192,15 @@ let playPause = document.getElementById('play-pause');
 let btnImg = document.querySelector('#play-pause img')
 
 playPause.addEventListener('click', function() {
+    console.log('here :) ')
     if(audio.paused === true) {
+        console.log('here  too:) ')
+
         audio.play();
         btnImg.src = "images/mushroom-obstacle.png";
     } else if (audio.paused === false) {
+        console.log('and here :) ')
+
         audio.pause();
         btnImg.src = "images/sapling-obstacle.png";
     }
