@@ -179,13 +179,27 @@ function theTimer() {
     t = this.setTimeout(addTime, 1000);
 }
 
-//Audio play on start
+//Audio 
+//play on start
 function play(){
     let audio = document.getElementById('audio');
-    audio.play();
-
+        audio.play();
 }
-    
+
+//play/pause toggle
+let playPause = document.getElementById('play-pause');
+let btnImg = document.querySelector('#play-pause img')
+
+playPause.addEventListener('click', function() {
+    if(audio.paused === true) {
+        audio.play();
+        btnImg.src = "images/mushroom-obstacle.png";
+    } else if (audio.paused === false) {
+        audio.pause();
+        btnImg.src = "images/sapling-obstacle.png";
+    }
+})
+
 function startGame() {
     theGame = new Game();
 }

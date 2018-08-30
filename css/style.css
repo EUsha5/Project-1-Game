@@ -10,8 +10,6 @@ body {
   left: 1vw;
 }
 
-
-
 .game-logo {
   text-align: center;
   background-color: #b4fde6;
@@ -85,6 +83,15 @@ width: 200px;
 height: 3vw;
 }
 
+.audio-div {
+  display: flex;
+}
+#play-pause {
+  border: none;
+  background-color: #b4fde6;
+  outline: none;
+}
+
 div + span {
   font-size: 20px;
   font-weight: 900;
@@ -99,7 +106,6 @@ h5 {
 
   #audio-bar {
     padding-top: 0;
-    padding-right: 7vw;
   }
 
 .health {
