@@ -88,16 +88,32 @@ class Player {
                 case 37:
                 if (this.x > 0) {
                     this.img = 'images/teemo-player-left.png'
+                    this.height = 85;
                     this.x -= 5;
                 }break;
                 case 39:
                 if (this.x < canvas.width-75){
                     this.x += 5;
                     this.img = 'images/teemo-player.png'
+                    this.height = 85;
+                    // this.y = 250;
+                }break;
+                case 40:
+                if (this.y === 250) {
+                    this.img = 'images/teemo-player-duck.png'
+                    this.width = 65;
+                    this.height = 55;
+                    this.y = 275;
                 }else{
                     this.x += 0;
                 }
             }
+        }
+
+        stopDucking(){
+            this.y = 250;
+            this.height = 85;
+            this.img = 'images/teemo-player.png'
         }
         
         jumpPlayer(keyCode) {
@@ -226,7 +242,26 @@ document.onkeydown = function(e) {
     }
     if (move === 32) {
         theGame.player.jumpPlayer(move);
+    } 
+    // if (move === 38) {
+    //     theGame.player.movePlayer(move);
+    // }
+}
+
+document.onkeyup = function(e) {
+    console.log(e.keyCode)
+    if (e.keyCode === 40){ 
+        console.log('duck button pressed')
+        theGame.player.stopDucking();
     }
 }
+
+// this.document.onkeyup = function(e) {
+//     e.preventDefault();
+//     var move = e.keycode;
+//     if (move === 40) {
+//         theGame.player.movePlayer(move);
+//     }
+// }
 
 }
