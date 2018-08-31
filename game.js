@@ -87,11 +87,13 @@ class Player {
             switch(number){
                 case 37:
                 if (this.x > 0) {
+                    this.img = 'images/teemo-player-left.png'
                     this.x -= 5;
                 }break;
                 case 39:
                 if (this.x < canvas.width-75){
                     this.x += 5;
+                    this.img = 'images/teemo-player.png'
                 }else{
                     this.x += 0;
                 }
@@ -182,7 +184,6 @@ function theTimer() {
 //Audio 
 //play on start
 function play(){
-    console.log('heyyyyy')
     let audio = document.getElementById('audio');
         audio.play();
 }
@@ -192,15 +193,10 @@ let playPause = document.getElementById('play-pause');
 let btnImg = document.querySelector('#play-pause img')
 
 playPause.addEventListener('click', function() {
-    console.log('here :) ')
     if(audio.paused === true) {
-        console.log('here  too:) ')
-
         audio.play();
         btnImg.src = "images/mushroom-obstacle.png";
     } else if (audio.paused === false) {
-        console.log('and here :) ')
-
         audio.pause();
         btnImg.src = "images/sapling-obstacle.png";
     }
@@ -223,6 +219,9 @@ document.onkeydown = function(e) {
     e.preventDefault();
     var move = e.keyCode;
     if (move === 37 || move === 39){
+        theGame.player.movePlayer(move);
+    }
+    if (move === 40){
         theGame.player.movePlayer(move);
     }
     if (move === 32) {
