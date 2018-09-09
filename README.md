@@ -10,5 +10,5 @@ When Teemo’s health points reach zero, the game is over. Beat your own time an
 
 Try Teemo Jump: 
 
-https://eusha5.github.io/teemo-jump/index.html
+https://eusha5.github.io/Teemo-Jump/index.html
 https://laurencahill.github.io/teemojump-game/index.html
